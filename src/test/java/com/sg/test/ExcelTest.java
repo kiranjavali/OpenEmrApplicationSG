@@ -22,6 +22,7 @@ public class ExcelTest {
 		int rowCount=sheet.getPhysicalNumberOfRows();
 		int cellCount=sheet.getRow(0).getPhysicalNumberOfCells();
 		Object [][] main= new Object[rowCount-1][cellCount];
+		DataFormatter format = new DataFormatter();
 		for (int i=1;i<rowCount;i++) 
 		{
 			for (int j=0;j<cellCount;j++)
@@ -29,7 +30,7 @@ public class ExcelTest {
 				
 				XSSFRow row = sheet.getRow(i);
 				XSSFCell cell = row.getCell(j);
-				DataFormatter format = new DataFormatter();
+				
 				String cellValue = format.formatCellValue(cell);
 				System.out.println(cellValue);
 				main[i-1][j]=cellValue;

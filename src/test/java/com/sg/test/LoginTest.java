@@ -34,20 +34,20 @@ public class LoginTest extends WebDriverWrapper{
 		Assert.assertEquals(oed.getCurrentTitle(), pageTitle);
 		
 	}
-	@Test
+	@Test(dataProvider="invalidCredentailsData",dataProviderClass = DataProviderUtils.class)
 	public void InvalidCredentailsTest(String username,String password,String langauage,String invalidMessage)
 	{
 		LoginPage lp= new LoginPage(driver);
-		lp.enterUsername("admin11");
-		lp.enterPassword("pass");
-		lp.selectLanguage("English (Indian)");
+		lp.enterUsername(username);
+		lp.enterPassword(password);
+		lp.selectLanguage(langauage);
 		lp.clickLogin();
 		//WebDriverWait wait = new WebDriverWait(driver, 20);
 		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='Flow Board']")));
 		//Assert.assertEquals(driver.getTitle(), "OpenEMR");
 		
 		//String error = driver.findElement(By.xpath("//div[contains (text(),'Invalid')]")).getText();
-		Assert.assertEquals(lp.InvalidLoginError(), "Invalid username or password");
+		Assert.assertEquals(lp.InvalidLoginError(), invalidMessage);
 		
 	}
 	

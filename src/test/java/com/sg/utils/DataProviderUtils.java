@@ -1,9 +1,17 @@
 package com.sg.utils;
 
+import java.io.IOException;
+
 import org.testng.annotations.DataProvider;
 
 public class DataProviderUtils {
 
+	@DataProvider
+	public Object[][] invalidCredentailsData() throws IOException
+	{
+		Object[][] main= ExcelUtils.getSheetObjectArray("src/test/resources/TestData/OpenEmrData.xlsx" , "InvalidCredentailsTest");
+		return main;
+	}
 	@DataProvider
 	public Object[][] validCredentailsData()
 	{
