@@ -17,11 +17,13 @@ public class LoginTest extends WebDriverWrapper{
 	public void validCredentailsTest()
 	{
 		LoginPage lp= new LoginPage(driver);
-		lp.enterUsername(driver, "admin");
-		lp.enterPassword(driver, "pass");
-		Select lang = new Select(driver.findElement(By.name("languageChoice")));
-		lang.selectByVisibleText("English (Indian)");
-		driver.findElement(By.xpath("//button[@type='submit']")).click();
+		lp.enterUsername("admin");
+		lp.enterPassword("pass");
+		lp.selectLanguage("English (Indian)");
+		//Select lang = new Select(driver.findElement(By.name("languageChoice")));
+		//lang.selectByVisibleText("English (Indian)");
+
+		lp.clickLogin();
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='Flow Board']")));
 		Assert.assertEquals(driver.getTitle(), "OpenEMR");
