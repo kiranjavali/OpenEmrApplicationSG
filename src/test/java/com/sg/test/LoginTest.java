@@ -16,8 +16,9 @@ public class LoginTest extends WebDriverWrapper{
 	@Test
 	public void validCredentailsTest()
 	{
-		LoginPage.enterUsername(driver, "admin");
-		LoginPage.enterPassword(driver, "pass");
+		LoginPage lp= new LoginPage(driver);
+		lp.enterUsername(driver, "admin");
+		lp.enterPassword(driver, "pass");
 		Select lang = new Select(driver.findElement(By.name("languageChoice")));
 		lang.selectByVisibleText("English (Indian)");
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
