@@ -7,8 +7,10 @@ import org.openqa.selenium.support.ui.Select;
 public class LoginPage {
 	private static By usernameLocator = By.id("authUser");
 	private static By passwordLocator = By.id("clearPass");
-	private static By Languageselector = By.name("languageChoice");
-	private static By LoginButton = By.xpath("//button[@type='submit']");
+	private static By languageSelector = By.name("languageChoice");
+	private static By loginButton = By.xpath("//button[@type='submit']");
+	private static By appDesc = By.xpath("//div[contains(text(),'')]");
+	private static By invalidLoginMsg=By.xpath("//div[contains (text(),'Invalid')]");
 	private WebDriver driver;
 
 	public LoginPage(WebDriver driver) {
@@ -24,12 +26,21 @@ public class LoginPage {
 	}
 
 	public void selectLanguage(String Language) {
-		Select Ls = new Select(driver.findElement(Languageselector));
+		Select Ls = new Select(driver.findElement(languageSelector));
 		Ls.selectByVisibleText(Language);
 	}
 
 	public void clickLogin() {
-		driver.findElement(LoginButton).click();
+		driver.findElement(loginButton).click();
 	}
+	public String GetApplicationDescription()
+	{
+		return driver.findElement(languageSelector).getText();
+	}
+	public String InvalidLoginError()
+	{
+		return driver.findElement(invalidLoginMsg).getText().trim();
+	}
+
 
 }

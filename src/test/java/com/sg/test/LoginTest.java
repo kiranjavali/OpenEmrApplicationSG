@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import com.sg.base.WebDriverWrapper;
 import com.sg.pages.LoginPage;
+import com.sg.pages.OpenEmrDashboard;
 
 public class LoginTest extends WebDriverWrapper{
 
@@ -22,11 +23,11 @@ public class LoginTest extends WebDriverWrapper{
 		lp.selectLanguage("English (Indian)");
 		//Select lang = new Select(driver.findElement(By.name("languageChoice")));
 		//lang.selectByVisibleText("English (Indian)");
-
-		lp.clickLogin();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='Flow Board']")));
-		Assert.assertEquals(driver.getTitle(), "OpenEMR");
+		OpenEmrDashboard oed=new OpenEmrDashboard(driver);
+		oed.waitForPresenceofFlowBoard();
+		//WebDriverWait wait = new WebDriverWait(driver, 20);
+		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='Flow Board']")));
+		Assert.assertEquals(oed.getCurrentTitle(), "OpenEMR");
 		
 	}
 	@Test
