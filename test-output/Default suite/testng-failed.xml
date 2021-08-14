@@ -5,9 +5,9 @@
     <classes>
       <class name="com.sg.test.LoginTest">
         <methods>
-          <include name="validCredentailsTest" invocation-numbers="0 1 2"/>
           <include name="tearDown"/>
           <include name="setup"/>
+          <include name="InvalidCredentailsTest" invocation-numbers="0 1"/>
         </methods>
       </class> <!-- com.sg.test.LoginTest -->
     </classes>
