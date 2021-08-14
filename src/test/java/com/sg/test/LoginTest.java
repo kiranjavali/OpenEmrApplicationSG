@@ -23,6 +23,7 @@ public class LoginTest extends WebDriverWrapper{
 		lp.selectLanguage("English (Indian)");
 		//Select lang = new Select(driver.findElement(By.name("languageChoice")));
 		//lang.selectByVisibleText("English (Indian)");
+		lp.clickLogin();
 		OpenEmrDashboard oed=new OpenEmrDashboard(driver);
 		oed.waitForPresenceofFlowBoard();
 		//WebDriverWait wait = new WebDriverWait(driver, 20);
@@ -33,16 +34,17 @@ public class LoginTest extends WebDriverWrapper{
 	@Test
 	public void InvalidCredentailsTest()
 	{
-		driver.findElement(By.id("authUser")).sendKeys("admin");
-		driver.findElement(By.id("clearPass")).sendKeys("pass11");
-		Select lang = new Select(driver.findElement(By.name("languageChoice")));
-		lang.selectByVisibleText("English (Indian)");
-		driver.findElement(By.xpath("//button[@type='submit']")).click();
+		LoginPage lp= new LoginPage(driver);
+		lp.enterUsername("admin11");
+		lp.enterPassword("pass");
+		lp.selectLanguage("English (Indian)");
+		lp.clickLogin();
 		//WebDriverWait wait = new WebDriverWait(driver, 20);
 		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='Flow Board']")));
 		//Assert.assertEquals(driver.getTitle(), "OpenEMR");
-		String error = driver.findElement(By.xpath("//div[contains (text(),'Invalid')]")).getText();
-		Assert.assertEquals(error, "Invalid username or password");
+		
+		//String error = driver.findElement(By.xpath("//div[contains (text(),'Invalid')]")).getText();
+		Assert.assertEquals(lp.InvalidLoginError(), "Invalid username or password");
 		
 	}
 	
