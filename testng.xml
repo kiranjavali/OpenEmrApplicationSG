@@ -7,4 +7,10 @@
       <class name="com.sg.test.LoginTest"/>
     </classes>
   </test> <!-- Test -->
+
+ <test thread-count="5" name="Test2">
+    <classes>
+      <class name="com.sg.test.LoginTest"/>
+    </classes>
+  </test> <!-- Test -->
 </suite> <!-- Suite -->

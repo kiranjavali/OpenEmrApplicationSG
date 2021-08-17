@@ -17,7 +17,6 @@ public class LoginTest extends WebDriverWrapper{
 
 
 	@Test(dataProvider="validCredentailsData",dataProviderClass = DataProviderUtils.class)
-	
 	public void validCredentailsTest(String username,String password,String language,String pageTitle)
 	{
 		LoginPage lp= new LoginPage(driver);
@@ -34,7 +33,7 @@ public class LoginTest extends WebDriverWrapper{
 		Assert.assertEquals(oed.getCurrentTitle(), pageTitle);
 		
 	}
-	@Test(dataProvider="invalidCredentailsData",dataProviderClass = DataProviderUtils.class)
+	@Test(dataProvider="commonDataProvider",dataProviderClass = DataProviderUtils.class)
 	public void InvalidCredentailsTest(String username,String password,String langauage,String invalidMessage)
 	{
 		LoginPage lp= new LoginPage(driver);
